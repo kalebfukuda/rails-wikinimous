@@ -1,0 +1,22 @@
+<div class="bg-light d-flex p-2 justify-content-end">
+  <%= link_to "New Article", new_article_path, class: "btn btn-primary"  %>
+</div>
+<div class="container col-6">
+  <div class="d-flex justify-content-center flex-column p-4">
+    <% @articles.each do |article| %>
+      <div class="card-product justify-content-between card-position">
+        <div class="card-product-infos">
+          <h2><%= link_to article.title, article_path(article)  %></h2>
+          <p><%= article.content %></p>
+        </div>
+        <%= link_to edit_article_path(article), class: "edit-position text-secondary" do  %>
+          <i class="fa-solid fa-pen-to-square"></i>
+        <% end %>
+        <%= link_to article_path(article), class: "delete-position text-secondary",
+          data: { turbo_method: :delete, turbo_confirm: "Delete '#{article.title}'?"} do %>
+          <i class="fa-solid fa-x"></i>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
